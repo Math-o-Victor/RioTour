@@ -1,22 +1,17 @@
 package com.expediciones.riotour.models;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="tb_viagem")
@@ -27,13 +22,13 @@ public class ViagemModel {
 	private long id;
 	
 	@NotBlank
-	private List<String> foto = new ArrayList<>();
+	private String foto;
 	
 	@NotBlank
 	private String titulo;
 	
 	@NotBlank
-	@Digits(integer=9, fraction=2) 
+	@Digits(integer=9, fraction=2)
 	private BigDecimal preco;
 	
 	@NotBlank
@@ -53,9 +48,9 @@ public class ViagemModel {
 	@JsonIgnoreProperties("viagem")
 	private CategoriaModel categoria;
 	
-	@ManyToOne
+	@ManyToMany(mappedBy = "viagem", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("viagem")
-	private UsuarioModel usuario;
+	private List<UsuarioModel> usuario;
 	
 	public ViagemModel() {}
 	
@@ -65,12 +60,12 @@ public class ViagemModel {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	public List<String> getFoto() {
+
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(List<String> foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
@@ -111,6 +106,20 @@ public class ViagemModel {
 	public void setDataChegada(Date dataChegada) {
 		this.dataChegada = dataChegada;
 	}
-	
-	
+
+	public CategoriaModel getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaModel categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<UsuarioModel> getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(List<UsuarioModel> usuario) {
+		this.usuario = usuario;
+	}
 }

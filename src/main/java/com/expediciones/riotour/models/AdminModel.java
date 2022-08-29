@@ -37,6 +37,7 @@ public class AdminModel {
     @ContainUppercase
     private String senha;
 
+
 	public long getId() {
 		return id;
 	}

@@ -2,12 +2,8 @@ package com.expediciones.riotour.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -19,6 +15,8 @@ import com.github.ankurpathak.password.bean.constraints.ContainSpecial;
 import com.github.ankurpathak.password.bean.constraints.ContainUppercase;
 import com.github.ankurpathak.password.bean.constraints.NotContainWhitespace;
 
+@Entity
+@Table(name="tb_usuario")
 public class UsuarioModel {
 	
 	public UsuarioModel(){}
@@ -49,12 +47,28 @@ public class UsuarioModel {
 	
 	@ManyToMany
 	@JsonIgnoreProperties("usuario")
-	private List<ViagemModel> viagem; 
+	private List<ViagemModel> viagem;
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuario")
-	private PassageiroModel passageiro;
-	
+	private List<PassageiroModel> passageiro;
+
+	public List<ViagemModel> getViagem() {
+		return viagem;
+	}
+
+	public void setViagem(List<ViagemModel> viagem) {
+		this.viagem = viagem;
+	}
+
+	public List<PassageiroModel> getPassageiro() {
+		return passageiro;
+	}
+
+	public void setPassageiro(List<PassageiroModel> passageiro) {
+		this.passageiro = passageiro;
+	}
+
 	public long getId() {
 		return id;
 	}

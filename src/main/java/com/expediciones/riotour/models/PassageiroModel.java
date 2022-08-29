@@ -1,16 +1,15 @@
 package com.expediciones.riotour.models;
 
 import java.util.Date;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Entity
+@Table(name="tb_passageiro")
 public class PassageiroModel {
 	
 	public PassageiroModel(){}
@@ -43,6 +42,14 @@ public class PassageiroModel {
 	@ManyToOne
 	@JsonIgnoreProperties("passageiro")
 	private UsuarioModel usuario;
+
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
 
 	public long getId() {
 		return id;

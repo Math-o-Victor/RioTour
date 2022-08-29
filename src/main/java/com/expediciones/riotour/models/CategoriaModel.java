@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.List;
 
 @Entity
 @Table(name="tb_categoria")
@@ -24,7 +27,15 @@ public class CategoriaModel {
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
-	private ViagemModel viagem;
+	private List<ViagemModel> viagem;
+
+	public List<ViagemModel> getViagem() {
+		return viagem;
+	}
+
+	public void setViagem(List<ViagemModel> viagem) {
+		this.viagem = viagem;
+	}
 
 	public long getId() {
 		return id;

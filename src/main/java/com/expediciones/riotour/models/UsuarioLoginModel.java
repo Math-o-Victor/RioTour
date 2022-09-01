@@ -1,18 +1,18 @@
 package com.expediciones.riotour.models;
 
 public class UsuarioLoginModel {
-    private String email;
+    private String nomeUsuario;
     
     private String senha;
 
     private String token;
 
-    public String getEmail() {
-        return email;
+    public String getNomeUsuario() {
+        return nomeUsuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     public String getSenha() {

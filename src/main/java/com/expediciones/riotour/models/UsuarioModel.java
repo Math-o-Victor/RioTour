@@ -37,7 +37,7 @@ public class UsuarioModel {
 	@Email
 	private String email;
 	
-	@Size(min = 8, max = 30, message="A senha não pode ter menos que 8 caracteres ou mais que 30!")
+	@Size(min = 8, message="A senha não pode ter menos que 8 caracteres ou mais que 30!")
     @NotContainWhitespace
     @ContainSpecial
     @ContainLowercase
